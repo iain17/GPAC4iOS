@@ -20,7 +20,14 @@ Pod::Spec.new do |s|
   s.tvos.deployment_target = '9.0'
   s.requires_arc = true
   
+  s.preserve_paths = "Classes/include/*", "Classes/include/**/*"
+  s.xcconfig = {
+    'CLANG_ENABLE_MODULES' => 'NO',
+    'USE_HEADERMAP' => 'NO',
+    'HEADER_SEARCH_PATHS' => '"$(PODS_ROOT)/Target Support Files/Pods"',
+    'USER_HEADER_SEARCH_PATHS' => '"${PODS_ROOT}/GPAC4iOS/Classes/include"',
+  }
+
   s.header_mappings_dir = 'Classes/include'
   s.source_files = 'Classes/**/*.{h,cpp,c,m}'
-  s.xcconfig = {'CLANG_ENABLE_MODULES' => 'NO' }
 end
